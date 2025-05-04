@@ -33,6 +33,9 @@ export const updateProduct = async(req, res) => {
   if(!mongoose.Types.ObjectId.isValid(id)){
     return res.status(404).json({message: "Invalid Product Id"});
   }
+  if(!product.name || !product.price || !product.image){
+    return res.status(400).json({message: "Todos los campos son obligatorios"});
+  }
   try {
     const updatedProduct = await Product.findByIdAndUpdate(id, product, {new: true});
     res.status(200).json({success: true, data: updatedProduct});

@@ -1,4 +1,4 @@
-import { Box, Heading } from "@chakra-ui/react";
+import { Box, Heading, Container, VStack } from "@chakra-ui/react";
 import { useColorModeValue } from "./ui/color-mode";
 
 const Modal = ({ isOpen, onClose, title, children }) => {
@@ -11,16 +11,19 @@ const Modal = ({ isOpen, onClose, title, children }) => {
       zIndex="9999"
       onClick={onClose}
     >
-      <Box 
-        bg={bg} p="6" borderRadius="md" minW="300px" boxShadow="lg"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <Heading size={"2xl"} mb={"24px"}>
-          {title}
-        </Heading>
-        {children}
-      </Box>
-    </Box>
+      <Container maxW={"md"} onClick={(e)=>e.stopPropagation()}>
+        <VStack padding={8}>
+          <Box w={"full"} bg={bg} p={6} rounded={"lg"} shadow={"md"}> 
+            <Heading as={"h1"} textAlign={"center"} mb={4} size={"3xl"}>
+              {title}
+            </Heading>
+            {children}
+          </Box>
+        </VStack>
+      </Container>
+    </Box> 
+    
+
   );
 };
 
